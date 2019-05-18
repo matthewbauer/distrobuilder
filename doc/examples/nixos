@@ -1,0 +1,51 @@
+image:
+  distribution: nixos
+  description: NixOS
+  expiry: 30d
+  architecture: aarch64
+  release: 19.03
+
+source:
+  downloader: nixos-http
+  url: https://hydra.nixos.org/job/nixos/release-19.03
+
+targets:
+  lxc:
+    create-message: |
+      You just created a NixOS container (arch={{ image.architecture }})
+
+    config:
+      - type: all
+        after: 4
+        content: |-
+          lxc.include = LXC_TEMPLATE_CONFIG/common.conf
+
+      - type: user
+        after: 4
+        content: |-
+          lxc.include = LXC_TEMPLATE_CONFIG/userns.conf
+
+      - type: all
+        content: |-
+          lxc.arch = {{ image.architecture_kernel }}
+
+files:
+ - path: /etc/hostname
+   generator: hostname
+
+ - path: /etc/hosts
+   generator: hosts
+
+packages:
+  manager: nix
+
+  update: true
+  cleanup: true
+
+  sets:
+    - packages:
+        - emacs
+      action: install
+
+mappings:
+  architecture_map: nixos

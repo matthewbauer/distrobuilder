@@ -43,6 +43,8 @@ func Get(name string) *Manager {
 		return NewApt()
 	case "dnf":
 		return NewDnf()
+	case "nix":
+		return NewNix()
 	case "pacman":
 		return NewPacman()
 	case "portage":

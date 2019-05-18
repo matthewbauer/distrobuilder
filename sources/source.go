@@ -36,6 +36,8 @@ func Get(name string) Downloader {
 		return NewOpenSUSEHTTP()
 	case "plamolinux-http":
 		return NewPlamoLinuxHTTP()
+	case "nixos-http":
+		return NewNixOSHTTP()
 	}
 
 	return nil

@@ -257,6 +257,7 @@ func (d *Definition) Validate() error {
 		"ubuntu-http",
 		"sabayon-http",
 		"docker-http",
+		"nixos-http",
 		"oraclelinux-http",
 		"opensuse-http",
 		"plamolinux-http",
@@ -270,6 +271,7 @@ func (d *Definition) Validate() error {
 			"apk",
 			"apt",
 			"dnf",
+			"nix",
 			"pacman",
 			"portage",
 			"yum",
@@ -332,6 +334,7 @@ func (d *Definition) Validate() error {
 		"debian",
 		"gentoo",
 		"plamolinux",
+		"nixos",
 	}
 
 	architectureMap := strings.TrimSpace(d.Mappings.ArchitectureMap)
